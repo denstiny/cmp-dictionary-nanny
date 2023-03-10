@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/build",
+  "command": "/usr/bin/c++    -o CMakeFiles/dict_server.dir/dict_server.cpp.o -c /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.cpp",
+  "file": "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.cpp"
+}
+]

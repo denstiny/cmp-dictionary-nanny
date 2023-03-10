@@ -1,0 +1,3 @@
+/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/build/CMakeFiles/dict_server.dir
+/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/build/CMakeFiles/edit_cache.dir
+/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/build/CMakeFiles/rebuild_cache.dir

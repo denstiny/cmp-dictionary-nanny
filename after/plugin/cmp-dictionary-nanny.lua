@@ -4,4 +4,4 @@
 -- @github      : https://github.com/denstiny
 -- @blog        : https://denstiny.github.io
 
-require("cmp-lang-nanny").setup()
+require("cmp-dictionary-nanny").setup()

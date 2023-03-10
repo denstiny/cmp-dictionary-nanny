@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/dict_server.dir/dict_server.cpp.o -o dict_server 

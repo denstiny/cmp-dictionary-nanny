@@ -6,5 +6,4 @@
 # @blog        : https://denstiny.github.io
 
 
-cd ./speak/ && npm install && cd -
 cd ./server/build/ && cmake ../ && make

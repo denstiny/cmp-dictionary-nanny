@@ -4,12 +4,8 @@
 -- @github      : https://github.com/denstiny
 -- @blog        : https://denstiny.github.io
 
-local cmp = require("cmp")
-local source = require("cmp-dictionary-nanny.source")
 local M = {}
-
-M.setup = function()
-	M.cmp_source = source:new()
-	cmp.register_source("cmp-dictionary-nanny", M.cmp_source)
+M.setup = function(opt)
+	require("cmp-dictionary-nanny.config").setup(opt)
 end
 return M

@@ -25,11 +25,12 @@ bool DataBases::OpenSqlite (char* db_path) {
 bool DataBases::TableQuery (TableData* table_data) {
   const std::string table_name = table_data->table_name;
   const std::string filter = table_data->filter;
+  const int max_results = table_data->max_results;
   char* errmsg = new char (0);
   char* sql = new char[MAXLEN];
   snprintf (sql, MAXLEN,
-            "SELECT * FROM %s WHERE word LIKE '%s%%' LIMIT 0,1000",
-            table_name.c_str(), filter.c_str());
+            "SELECT * FROM %s WHERE word LIKE '%s%%' ORDER BY bnc DESC  LIMIT 0,%d ",
+            table_name.c_str(), filter.c_str(), max_results);
             
   int rc = sqlite3_exec (db,
                          sql,
@@ -66,13 +67,6 @@ void Resue::SetCorrelationId (int value) {
 }
 
 void Resue::Show() {
-
-  //std::string correlation_id_str = "correlation_id = \"";
-  //correlation_id_str.append (table_data->correlation_id);
-  //correlation_id_str.append ("\"");
-  //table.append (correlation_id_str);
-  //std::cout << "[" << resue_string << "]" << std::endl;
-  //std::cout << "count :"  << this->count << std::endl;
   Json::StreamWriterBuilder jswBuilder;
   jswBuilder["emitUTF8"] = true;
   jswBuilder["indentation"] = "";
@@ -102,5 +96,6 @@ TableData::TableData (std::string from_data) {
     this->filter = root["filter"].asString();
     this->correlation_id = root["correlation_id"].asInt();
     this->resue.SetCorrelationId (this->correlation_id);
+    this->max_results = root["max_num_results"].asInt();
   }
 }

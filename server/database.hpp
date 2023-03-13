@@ -27,6 +27,7 @@ class TableData {
     std::string table_name;
     std::string filter;
     int correlation_id;
+    int max_results;
     Resue resue;
 };
 

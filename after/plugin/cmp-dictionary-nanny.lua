@@ -4,4 +4,6 @@
 -- @github      : https://github.com/denstiny
 -- @blog        : https://denstiny.github.io
 
-require("cmp-dictionary-nanny").setup()
+local cmp = require("cmp")
+local source = require("cmp-dictionary-nanny.source")
+cmp.register_source("cmp-dictionary-nanny", source.new())

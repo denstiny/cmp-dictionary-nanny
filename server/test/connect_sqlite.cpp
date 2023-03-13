@@ -32,7 +32,7 @@ int main (int argc, char* argv[]) {
     fprintf (stdout, "Opened database successfully\n");
   }
   rc = sqlite3_exec (db,
-                     "SELECT * FROM stardict WHERE word LIKE 's%'", callback,
+                     "SELECT  * FROM stardict WHERE word LIKE 'string'", callback,
                      (void*)data, &errmsg);
   if ( rc != SQLITE_OK ) {
     fprintf (stderr, "SQL error: %s\n", errmsg);

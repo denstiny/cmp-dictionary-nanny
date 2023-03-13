@@ -37,14 +37,13 @@ function source._do_complete(self, ctx)
 		return
 	end
 	local max_num_results = conf:get("max_num_results")
-	local cursor = ctx.context.cursor
-	local cur_line = ctx.context.cursor_line
-	local cur_line_before = string.sub(cur_line, 1, cursor.col - 1)
-	local cur_line_after = string.sub(cur_line, cursor.col) -- include current character
+	local table_name = conf:get("table_name")
+	local input = string.sub(ctx.context.cursor_before_line, ctx.offset)
 	local req = {
 		correlation_id = ctx.context.id,
-		table_name = conf:get("table_name"),
-		filter = cur_line,
+		table_name = table_name,
+		filter = input,
+		max_num_results = max_num_results,
 	}
 	pcall(fn.chansend, self.job, fn.json_encode(req) .. "\n")
 end
@@ -77,7 +76,7 @@ source.on_exit = function(self, job, code)
 	end
 	self.pending = {}
 	local bin = utils.binary()
-	self.job = fn.jobstart({ bin }, {
+	self.job = fn.jobstart({ bin, conf:get("database_path") }, {
 		on_stderr = function(_, data, _)
 			notify.Notify(data)
 		end,
@@ -114,19 +113,23 @@ source.on_stdout = function(self, data)
 						local word = result.word
 						local definition = result.definition
 						local translation = result.translation
+						local phonetic = result.phonetic
 						local item = {
 							label = word,
 							data = result,
 							kind = conf:get("kind"),
 							documentation = {
 								kind = cmp.lsp.MarkupKind.Markdown,
-								value = translation .. "\n\n" .. definition,
+								value = translation .. "\n\n" .. phonetic .. "\n\n" .. definition,
 							},
 						}
 						table.insert(items, item)
 					end
 				end
-				callback(items)
+				callback({
+					items = items,
+					isIncomplete = conf:get("run_on_every_keystroke"),
+				})
 			end
 		end
 	end

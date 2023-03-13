@@ -4,6 +4,7 @@ local conf_defaults = {
 	priority = 5000,
 	show_prediction_strength = false,
 	table_name = "stardict",
+	database_path = vim.fn.stdpath("data") .. "/data/ultimate.db",
 	run_on_every_keystroke = true,
 	kind = "🦢", -- A very good friend of mine loves swans
 	ignored_file_types = { -- default is not to ignore

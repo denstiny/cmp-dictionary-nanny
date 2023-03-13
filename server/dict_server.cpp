@@ -11,8 +11,12 @@
 int main (int argc, char** argv) {
   DataBases database;
   char db_path[MAXLEN];
-  GetSqliteDbPath (db_path);
-  database.OpenSqlite (db_path);
+  if (argc == 1) {
+    GetSqliteDbPath (db_path);
+    database.OpenSqlite (db_path);
+  } else {
+    database.OpenSqlite (argv[1]);
+  }
   std::string str;
   
   while (std::getline (std::cin, str)) {

@@ -129,6 +129,30 @@ dict_server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/build
 .PHONY : dict_server/fast
 
+database.o: database.cpp.o
+.PHONY : database.o
+
+# target to build an object file
+database.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/database.cpp.o
+.PHONY : database.cpp.o
+
+database.i: database.cpp.i
+.PHONY : database.i
+
+# target to preprocess a source file
+database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/database.cpp.i
+.PHONY : database.cpp.i
+
+database.s: database.cpp.s
+.PHONY : database.s
+
+# target to generate assembly for a file
+database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/database.cpp.s
+.PHONY : database.cpp.s
+
 dict_server.o: dict_server.cpp.o
 .PHONY : dict_server.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... dict_server"
+	@echo "... database.o"
+	@echo "... database.i"
+	@echo "... database.s"
 	@echo "... dict_server.o"
 	@echo "... dict_server.i"
 	@echo "... dict_server.s"

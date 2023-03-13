@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/dict_server.dir/database.cpp.o"
+  "CMakeFiles/dict_server.dir/database.cpp.o.d"
   "CMakeFiles/dict_server.dir/dict_server.cpp.o"
   "CMakeFiles/dict_server.dir/dict_server.cpp.o.d"
   "dict_server"

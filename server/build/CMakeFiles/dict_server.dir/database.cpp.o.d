@@ -1,5 +1,5 @@
-CMakeFiles/dict_server.dir/dict_server.cpp.o: \
- /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.cpp \
+CMakeFiles/dict_server.dir/database.cpp.o: \
+ /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/database.cpp \
  /usr/include/stdc-predef.h \
  /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/database.hpp \
  /usr/include/sqlite3.h \
@@ -176,36 +176,4 @@ CMakeFiles/dict_server.dir/dict_server.cpp.o: \
  /usr/include/c++/12.2.1/bits/deque.tcc /usr/include/c++/12.2.1/stack \
  /usr/include/c++/12.2.1/bits/stl_stack.h \
  /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/jsoncpp/include/writer.h \
- /usr/include/c++/12.2.1/iostream \
- /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.hpp \
- /usr/include/c++/12.2.1/future /usr/include/c++/12.2.1/mutex \
- /usr/include/c++/12.2.1/bits/chrono.h /usr/include/c++/12.2.1/ratio \
- /usr/include/c++/12.2.1/limits /usr/include/c++/12.2.1/ctime \
- /usr/include/c++/12.2.1/bits/parse_numbers.h \
- /usr/include/c++/12.2.1/bits/std_mutex.h \
- /usr/include/c++/12.2.1/bits/unique_lock.h \
- /usr/include/c++/12.2.1/condition_variable \
- /usr/include/c++/12.2.1/bits/atomic_futex.h \
- /usr/include/c++/12.2.1/atomic \
- /usr/include/c++/12.2.1/bits/std_function.h \
- /usr/include/c++/12.2.1/bits/std_thread.h /usr/include/sys/epoll.h \
- /usr/include/bits/epoll.h /usr/include/netinet/in.h \
- /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
- /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
- /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
- /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h /usr/include/asm/posix_types.h \
- /usr/include/asm/posix_types_64.h /usr/include/asm-generic/posix_types.h \
- /usr/include/asm/bitsperlong.h /usr/include/asm-generic/bitsperlong.h \
- /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
- /usr/include/bits/types/struct_osockaddr.h /usr/include/bits/in.h \
- /usr/include/unistd.h /usr/include/bits/posix_opt.h \
- /usr/include/bits/environments.h /usr/include/bits/confname.h \
- /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
- /usr/include/bits/unistd_ext.h /usr/include/linux/close_range.h \
- /usr/include/arpa/inet.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
- /usr/include/bits/fcntl-linux.h /usr/include/linux/falloc.h \
- /usr/include/bits/stat.h /usr/include/bits/struct_stat.h \
- /usr/include/c++/12.2.1/cassert /usr/include/assert.h \
- /usr/include/c++/12.2.1/thread \
- /usr/include/c++/12.2.1/bits/this_thread_sleep.h
+ /usr/include/c++/12.2.1/iostream

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/./jsoncpp/include
 
 CXX_FLAGS = 
 

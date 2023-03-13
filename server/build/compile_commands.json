@@ -1,7 +1,12 @@
 [
 {
   "directory": "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/build",
-  "command": "/usr/bin/c++    -o CMakeFiles/dict_server.dir/dict_server.cpp.o -c /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.cpp",
+  "command": "/usr/bin/c++  -I/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/./jsoncpp/include  -o CMakeFiles/dict_server.dir/dict_server.cpp.o -c /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.cpp",
   "file": "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.cpp"
+},
+{
+  "directory": "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/build",
+  "command": "/usr/bin/c++  -I/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/./jsoncpp/include  -o CMakeFiles/dict_server.dir/database.cpp.o -c /home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/database.cpp",
+  "file": "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/database.cpp"
 }
 ]

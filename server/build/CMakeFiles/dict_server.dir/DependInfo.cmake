@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/database.cpp" "CMakeFiles/dict_server.dir/database.cpp.o" "gcc" "CMakeFiles/dict_server.dir/database.cpp.o.d"
   "/home/aero/.local/share/nvim/lazy/cmp-dictionary-nanny/server/dict_server.cpp" "CMakeFiles/dict_server.dir/dict_server.cpp.o" "gcc" "CMakeFiles/dict_server.dir/dict_server.cpp.o.d"
   )
 

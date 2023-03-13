@@ -7,5 +7,10 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 project(dict_server CXX)
-
-add_executable(${PROJECT_NAME} dict_server)
+find_package(SQLite3)
+include_directories(${SQLite3_INCLUDE_DIRS})
+include_directories(./jsoncpp/include/)
+LINK_DIRECTORIES(./jsoncpp/library/)
+add_executable(${PROJECT_NAME} dict_server database)
+target_link_libraries (${PROJECT_NAME} ${SQLite3_LIBRARIES})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} jsoncpp.a)

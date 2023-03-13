@@ -6,12 +6,10 @@
 
 local cmp = require("cmp")
 local source = require("cmp-dictionary-nanny.source")
-
 local M = {}
+
 M.setup = function()
 	M.cmp_source = source:new()
-	vim.defer_fn(function()
-		cmp.register_source("cmp-dictionary-nanny", M.cmp_source)
-	end, 0)
+	cmp.register_source("cmp-dictionary-nanny", M.cmp_source)
 end
 return M

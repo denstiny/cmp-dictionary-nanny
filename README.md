@@ -42,13 +42,14 @@ you can custom database(default chinese database)
 ### database requirements
 | key | describe |
 | :-: | :-:      |
-| word | completion of the words |
+| word | completion of the word |
 | definition | The word meaning |
 | translation | word translation |
 | frq | Contemporary corpus word frequency |
 | bnc | Word processing |
 | phonetic | phonetic symbol |
 
-## about
-database derived [from](https://github.com/skywind3000/ECDICT/releases/tag/1.0.28)  
-code [reference](https://github.com/tzachar/cmp-tabnine)
+## About
+- database derived [from](https://github.com/skywind3000/ECDICT/releases/tag/1.0.28)  
+- code [reference](https://github.com/tzachar/cmp-tabnine)
+- Similar to the [plug-in](https://github.com/JuanZoran/Trans.nvim)

@@ -97,9 +97,9 @@ source.on_stdout = function(self, data)
 			if response == nil then
 				notify.Notify("Dictionary-nanny: json decode error: ")
 			elseif id == nil then
-				notify.Notify("id is nill")
+				--notify.Notify("id is nill")
 			elseif self.pending[id] == nil then
-				vim.notify(vim.inspect(self.pending[id]))
+				--vim.notify(vim.inspect(self.pending[id]))
 				notify.Notify("unknown message: " .. jd)
 			elseif self.pending[id].job ~= self.job then
 				notify.Notify("pending[id].job ~= self.job")

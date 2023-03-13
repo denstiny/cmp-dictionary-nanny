@@ -1,7 +1,7 @@
 # cmp-dictionary-nanny
 This is a nvim-cmp plugin that can help complete words and view translated documents
 
-https://user-images.githubusercontent.com/57088952/224658367-892d8267-fec2-49c7-be1e-f996a85ba3db.mp4
+https://user-images.githubusercontent.com/57088952/224740571-e7cc1062-4fdf-4f68-b15b-b0718856ee0f.mp4
 
 ## Install
 `packer.nvim`

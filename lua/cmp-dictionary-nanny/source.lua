@@ -129,16 +129,21 @@ source.on_stdout = function(self, data)
 						local translation = result.translation
 						local phonetic = result.phonetic
 						local item = {
-							label = word,
+							--label = word,
 							insertText = word,
 							data = result,
 							kind = cmp.lsp.CompletionItemKind.Text,
 							priority = conf:get("priority"),
 							documentation = {
 								kind = cmp.lsp.MarkupKind.Markdown,
-								value = translation .. "\n\n" .. phonetic .. "\n\n" .. definition,
+								value = phonetic .. "\n\n" .. translation .. "\n\n" .. definition,
 							},
 						}
+						if conf:get("item_add_translation") then
+							item.label = word .. " " .. translation
+						else
+							item.label = word
+						end
 						--if self.pending[id] == "word" then
 						--	item.word = word
 						--	item.documentation.value = translation .. "\n\n" .. phonetic .. "\n\n" .. definition

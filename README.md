@@ -28,6 +28,7 @@ local conf_defaults = {
 	max_num_results = 20,
 	table_name = "stardict",
 	database_path = vim.fn.stdpath("data") .. "/data/ultimate.db",
+	item_add_translation = true,
   database_url = "https://github.com/skywind3000/ECDICT-ultimate/releases/download/1.0.0/ecdict-ultimate-sqlite.zip",
 	run_on_every_keystroke = true,
 	ignored_file_types = { -- default is not to ignore

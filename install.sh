@@ -11,7 +11,7 @@ set -e
 if test -e "$HOME/.local/share/nvim/data/ultimate.db"; then
   exit
 fi
-if test -e "$HOME/.vim/dict/ultimate.db"; then
+if test -e "$HOME/.local/share/nvim/data/ultimate.db"; then
 	exit
 fi
 

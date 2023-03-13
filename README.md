@@ -26,11 +26,10 @@ use {
 ```lua
 local conf_defaults = {
 	max_num_results = 20,
-	show_prediction_strength = false,
 	table_name = "stardict",
 	database_path = vim.fn.stdpath("data") .. "/data/ultimate.db",
+  database_url = "https://github.com/skywind3000/ECDICT-ultimate/releases/download/1.0.0/ecdict-ultimate-sqlite.zip",
 	run_on_every_keystroke = true,
-	kind = "🦢", -- A very good friend of mine loves swans
 	ignored_file_types = { -- default is not to ignore
 		-- uncomment to ignore in lua:
 		-- lua = true
@@ -48,3 +47,7 @@ you can custom database(default chinese database)
 | frq | Contemporary corpus word frequency |
 | bnc | Word processing |
 | phonetic | phonetic symbol |
+
+## about
+database derived [from](https://github.com/skywind3000/ECDICT/releases/tag/1.0.28)  
+code [reference](https://github.com/tzachar/cmp-tabnine)

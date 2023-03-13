@@ -5,7 +5,11 @@
 -- @blog        : https://denstiny.github.io
 
 local M = {}
+local config = require("cmp-dictionary-nanny.config")
 M.setup = function(opt)
-	require("cmp-dictionary-nanny.config").setup(opt)
+	config.setup(opt)
+	local path = config:get("database_path")
+	local url = config:get("database_url")
+	require("cmp-dictionary-nanny.download").download(path, url)
 end
 return M

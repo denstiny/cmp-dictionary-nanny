@@ -25,9 +25,13 @@ bool DataBases::OpenSqlite (char* db_path) {
 bool DataBases::TableQuery (TableData* table_data) {
   const std::string table_name = table_data->table_name;
   const std::string filter = table_data->filter;
+  const std::string field = table_data->field;
   const int max_results = table_data->max_results;
   char* errmsg = new char (0);
   char* sql = new char[MAXLEN];
+  //snprintf (sql, MAXLEN,
+  //          "SELECT * FROM %s WHERE %s LIKE '%s%%' ORDER BY bnc DESC  LIMIT 0,%d ",
+  //          table_name.c_str(), field.c_str(), filter.c_str(), max_results);
   snprintf (sql, MAXLEN,
             "SELECT * FROM %s WHERE word LIKE '%s%%' ORDER BY bnc DESC  LIMIT 0,%d ",
             table_name.c_str(), filter.c_str(), max_results);
@@ -97,5 +101,6 @@ TableData::TableData (std::string from_data) {
     this->correlation_id = root["correlation_id"].asInt();
     this->resue.SetCorrelationId (this->correlation_id);
     this->max_results = root["max_num_results"].asInt();
+    this->field = root["field"].asString();
   }
 }

@@ -4,7 +4,7 @@
 -- @github      : https://github.com/denstiny
 -- @blog        : https://denstiny.github.io
 
-local utils = {}
+local utils = require("cmp-dictionary-nanny.utils")
 local conf = require("cmp-dictionary-nanny.config")
 local notify = require("cmp-dictionary-nanny.notify")
 local cmp = require("cmp")
@@ -32,6 +32,18 @@ function source.complete(self, ctx, callback)
 	self:_do_complete(ctx)
 end
 
+--function swap_field(input)
+--	local input_len = string.len(input)
+--	print(input_len)
+--	local char = input:sub(input_len, input_len)
+--	if char > "~" then
+--		return "translation"
+--	end
+--	if char <= "~" then
+--		return "word"
+--	end
+--end
+
 function source._do_complete(self, ctx)
 	if self.job == 0 then
 		return
@@ -43,8 +55,10 @@ function source._do_complete(self, ctx)
 		correlation_id = ctx.context.id,
 		table_name = table_name,
 		filter = input,
+		--field = swap_field(input),
 		max_num_results = max_num_results,
 	}
+	self.pending[ctx.context.id].field = req.field
 	pcall(fn.chansend, self.job, fn.json_encode(req) .. "\n")
 end
 
@@ -97,7 +111,7 @@ source.on_stdout = function(self, data)
 			if response == nil then
 				notify.Notify("Dictionary-nanny: json decode error: ")
 			elseif id == nil then
-				--notify.Notify("id is nill")
+				notify.Notify("id is nill")
 			elseif self.pending[id] == nil then
 				--vim.notify(vim.inspect(self.pending[id]))
 				notify.Notify("unknown message: " .. jd)
@@ -116,13 +130,24 @@ source.on_stdout = function(self, data)
 						local phonetic = result.phonetic
 						local item = {
 							label = word,
+							insertText = word,
 							data = result,
-							kind = conf:get("kind"),
+							kind = cmp.lsp.CompletionItemKind.Text,
+							priority = conf:get("priority"),
 							documentation = {
 								kind = cmp.lsp.MarkupKind.Markdown,
 								value = translation .. "\n\n" .. phonetic .. "\n\n" .. definition,
 							},
 						}
+						--if self.pending[id] == "word" then
+						--	item.word = word
+						--	item.documentation.value = translation .. "\n\n" .. phonetic .. "\n\n" .. definition
+						--	vim.notify("word")
+						--else
+						--	item.word = translation
+						--	item.documentation.value = word .. "\n\n" .. phonetic .. "\n\n" .. definition
+						--	vim.notify("translation")
+						--end
 						table.insert(items, item)
 					end
 				end
@@ -133,28 +158,6 @@ source.on_stdout = function(self, data)
 			end
 		end
 	end
-end
-
-utils.parent_dir = function(path)
-	local pattern = "^(.+)/"
-	path = path:gsub("/*$", "")
-	local parent_dir = path:match(pattern) .. "/"
-	return parent_dir
-end
-
-utils.get_current_dir = function()
-	local str = debug.getinfo(2, "S").source:sub(2)
-	return str:match("(.*/)")
-end
-
-utils.home_dir = function()
-	local root = utils.parent_dir(utils.parent_dir(utils.get_current_dir()))
-	return root
-end
-
---- get server binary path
-utils.binary = function()
-	return utils.home_dir() .. "/server/build/dict_server"
 end
 
 return source

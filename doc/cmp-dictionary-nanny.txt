@@ -1,0 +1,17 @@
+*cmp-dictionary-nanny* plugin is completion word
+
+*configuration*
+>lua
+  local conf_defaults = {
+  	max_num_results = 20, -- The number of entries maximum limit
+  	priority = 1, -- item priority
+  	table_name = "stardict", -- databases query table name
+  	database_path = vim.fn.stdpath("data") .. "/data/ultimate.db", -- database db path
+    database_url = "https://github.com/skywind3000/ECDICT-ultimate/releases/download/1.0.0/ecdict-ultimate-sqlite.zip",
+  	run_on_every_keystroke = true, -- Any input will be completion
+  	ignored_file_types = { -- default is not to ignore
+  		-- uncomment to ignore in lua:
+  		-- lua = true
+  	},
+  }
+<

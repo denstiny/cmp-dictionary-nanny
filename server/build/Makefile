@@ -129,12 +129,26 @@ dict_server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/build
 .PHONY : dict_server/fast
 
+#=============================================================================
+# Target rules for targets named test_database
+
+# Build rule for target.
+test_database: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_database
+.PHONY : test_database
+
+# fast build rule for target.
+test_database/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_database.dir/build.make CMakeFiles/test_database.dir/build
+.PHONY : test_database/fast
+
 database.o: database.cpp.o
 .PHONY : database.o
 
 # target to build an object file
 database.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/database.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_database.dir/build.make CMakeFiles/test_database.dir/database.cpp.o
 .PHONY : database.cpp.o
 
 database.i: database.cpp.i
@@ -143,6 +157,7 @@ database.i: database.cpp.i
 # target to preprocess a source file
 database.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/database.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_database.dir/build.make CMakeFiles/test_database.dir/database.cpp.i
 .PHONY : database.cpp.i
 
 database.s: database.cpp.s
@@ -151,6 +166,7 @@ database.s: database.cpp.s
 # target to generate assembly for a file
 database.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/database.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_database.dir/build.make CMakeFiles/test_database.dir/database.cpp.s
 .PHONY : database.cpp.s
 
 dict_server.o: dict_server.cpp.o
@@ -177,6 +193,30 @@ dict_server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dict_server.dir/build.make CMakeFiles/dict_server.dir/dict_server.cpp.s
 .PHONY : dict_server.cpp.s
 
+test/test_DataBase.o: test/test_DataBase.cpp.o
+.PHONY : test/test_DataBase.o
+
+# target to build an object file
+test/test_DataBase.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_database.dir/build.make CMakeFiles/test_database.dir/test/test_DataBase.cpp.o
+.PHONY : test/test_DataBase.cpp.o
+
+test/test_DataBase.i: test/test_DataBase.cpp.i
+.PHONY : test/test_DataBase.i
+
+# target to preprocess a source file
+test/test_DataBase.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_database.dir/build.make CMakeFiles/test_database.dir/test/test_DataBase.cpp.i
+.PHONY : test/test_DataBase.cpp.i
+
+test/test_DataBase.s: test/test_DataBase.cpp.s
+.PHONY : test/test_DataBase.s
+
+# target to generate assembly for a file
+test/test_DataBase.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_database.dir/build.make CMakeFiles/test_database.dir/test/test_DataBase.cpp.s
+.PHONY : test/test_DataBase.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +226,16 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... dict_server"
+	@echo "... test_database"
 	@echo "... database.o"
 	@echo "... database.i"
 	@echo "... database.s"
 	@echo "... dict_server.o"
 	@echo "... dict_server.i"
 	@echo "... dict_server.s"
+	@echo "... test/test_DataBase.o"
+	@echo "... test/test_DataBase.i"
+	@echo "... test/test_DataBase.s"
 .PHONY : help
 
 

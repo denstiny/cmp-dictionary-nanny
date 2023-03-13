@@ -7,6 +7,7 @@
 local utils = {}
 local conf = require("cmp-dictionary-nanny.config")
 local notify = require("cmp-dictionary-nanny.notify")
+local cmp = require("cmp")
 local fn = vim.fn
 
 local source = {
@@ -23,16 +24,15 @@ function source:get_debug_name()
 end
 
 function source.complete(self, ctx, callback)
-	--if conf:get("ignored_file_types")[vim.bo.filetype] then
-	--	callback()
-	--	return
-	--end
+	if conf:get("ignored_file_types")[vim.bo.filetype] then
+		callback()
+		return
+	end
 	self.pending[ctx.context.id] = { ctx = ctx, callback = callback, job = self.job }
 	self:_do_complete(ctx)
 end
 
 function source._do_complete(self, ctx)
-	vim.notify("as")
 	if self.job == 0 then
 		return
 	end
@@ -46,13 +46,12 @@ function source._do_complete(self, ctx)
 		table_name = conf:get("table_name"),
 		filter = cur_line,
 	}
-	--req.pcall(fn.chansend, self.job, fn.json_encode(req) .. "\n")
+	pcall(fn.chansend, self.job, fn.json_encode(req) .. "\n")
 end
 
 local last_instance = nil
 
 source.new = function()
-	vim.notify("as")
 	last_instance = setmetatable({}, { __index = source })
 	last_instance:on_exit(0)
 	return last_instance
@@ -80,7 +79,7 @@ source.on_exit = function(self, job, code)
 	local bin = utils.binary()
 	self.job = fn.jobstart({ bin }, {
 		on_stderr = function(_, data, _)
-			notify(data)
+			notify.Notify(data)
 		end,
 		on_exit = function(j, c, _)
 			self:on_exit(j, c)
@@ -92,26 +91,43 @@ source.on_exit = function(self, job, code)
 end
 
 source.on_stdout = function(self, data)
-	vim.notify(data)
 	for _, jd in ipairs(data) do
 		if jd ~= nil and jd ~= "" and jd ~= "null" then
 			local response = (json_decode(jd) or {})
 			local id = response.correlation_id
-			local callback = self.pending[id].callback
-			callback({
-				{ label = "January" },
-				{ label = "February" },
-				{ label = "March" },
-				{ label = "April" },
-				{ label = "May" },
-				{ label = "June" },
-				{ label = "July" },
-				{ label = "August" },
-				{ label = "September" },
-				{ label = "October" },
-				{ label = "November" },
-				{ label = "December" },
-			})
+			if response == nil then
+				notify.Notify("Dictionary-nanny: json decode error: ")
+			elseif id == nil then
+				notify.Notify("id is nill")
+			elseif self.pending[id] == nil then
+				vim.notify(vim.inspect(self.pending[id]))
+				notify.Notify("unknown message: " .. jd)
+			elseif self.pending[id].job ~= self.job then
+				notify.Notify("pending[id].job ~= self.job")
+			else
+				local callback = self.pending[id].callback
+				self.pending[id] = nil
+				local items = {}
+				local results = response.results
+				if results ~= nil then
+					for _, result in ipairs(results) do
+						local word = result.word
+						local definition = result.definition
+						local translation = result.translation
+						local item = {
+							label = word,
+							data = result,
+							kind = conf:get("kind"),
+							documentation = {
+								kind = cmp.lsp.MarkupKind.Markdown,
+								value = translation .. "\n\n" .. definition,
+							},
+						}
+						table.insert(items, item)
+					end
+				end
+				callback(items)
+			end
 		end
 	end
 end

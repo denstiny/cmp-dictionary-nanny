@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/test_database.dir/test/test_DataBase.cpp.o CMakeFiles/test_database.dir/database.cpp.o -o test_database   -L./jsoncpp/library  -Wl,-rpath,./jsoncpp/library -lsqlite3 -Wl,-Bstatic -ljsoncpp -Wl,-Bdynamic 

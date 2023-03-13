@@ -28,7 +28,7 @@ bool DataBases::TableQuery (TableData* table_data) {
   char* errmsg = new char (0);
   char* sql = new char[MAXLEN];
   snprintf (sql, MAXLEN,
-            "SELECT * FROM %s WHERE word LIKE '%s%%' LIMIT 0,20",
+            "SELECT * FROM %s WHERE word LIKE '%s%%' LIMIT 0,1000",
             table_name.c_str(), filter.c_str());
             
   int rc = sqlite3_exec (db,
@@ -41,7 +41,6 @@ bool DataBases::TableQuery (TableData* table_data) {
     std::cerr << "SQL error: " << errmsg << std::endl;
     sqlite3_free (errmsg);
   } else {
-    table_data->resue.AddData ("{}");
     table_data->resue.Show();
   }
   delete[] sql;
@@ -58,19 +57,33 @@ void GetSqliteDbPath (char* path) {
             GetHomePath());
 }
 
-void Resue::AddData (std::string table) {
-  resue_string.append ( table);
-  this->count += 1;
+void Resue::AddData (Json::Value value) {
+  root["results"].append (value);
+}
+
+void Resue::SetCorrelationId (int value) {
+  root["correlation_id"] = value;
 }
 
 void Resue::Show() {
-  std::cout << "{" << resue_string << "}" << std::endl;
-  std::cout << "count :"  << this->count << std::endl;
+
+  //std::string correlation_id_str = "correlation_id = \"";
+  //correlation_id_str.append (table_data->correlation_id);
+  //correlation_id_str.append ("\"");
+  //table.append (correlation_id_str);
+  //std::cout << "[" << resue_string << "]" << std::endl;
+  //std::cout << "count :"  << this->count << std::endl;
+  Json::StreamWriterBuilder jswBuilder;
+  jswBuilder["emitUTF8"] = true;
+  jswBuilder["indentation"] = "";
+  std::unique_ptr<Json::StreamWriter>jsWriter (
+    jswBuilder.newStreamWriter());
+  std::ostringstream os;
+  jsWriter->write (root, &os);
+  std::cout << os.str() << std::endl;
 }
 
-void Resue::Clear() {
-  resue_string.clear();
-}
+void Resue::Clear() {}
 
 Resue::Resue() {
   this->count = 0;
@@ -87,7 +100,7 @@ TableData::TableData (std::string from_data) {
                      &err)) {
     this->table_name =  root["table_name"].asString();
     this->filter = root["filter"].asString();
-    this->correlation_id = root["correlation_id"].asString();
+    this->correlation_id = root["correlation_id"].asInt();
+    this->resue.SetCorrelationId (this->correlation_id);
   }
-  std::cout << table_name << std::endl;
 }

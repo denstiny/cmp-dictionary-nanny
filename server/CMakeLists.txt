@@ -7,6 +7,7 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(PROJECT_TEST_NAME "test_database")
+set(CMAKE_CXX_STANDARD 11)
 project(dict_server CXX)
 find_package(SQLite3)
 include_directories(${SQLite3_INCLUDE_DIRS})
@@ -16,3 +17,4 @@ target_link_libraries (${PROJECT_NAME} ${SQLite3_LIBRARIES})
 ## TEST
 # add_executable(${PROJECT_TEST_NAME} ./test/test_DataBase.cpp database.cpp ${jsoncpp})
 # target_link_libraries (${PROJECT_TEST_NAME} ${SQLite3_LIBRARIES})
+add_executable(test_jsoncpp ./test/test_jsoncpp.cpp ${jsoncpp})

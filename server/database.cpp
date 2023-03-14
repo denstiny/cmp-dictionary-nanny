@@ -30,13 +30,13 @@ bool DataBases::TableQuery (TableData* table_data) {
   const int max_results = table_data->max_results;
   char* errmsg = new char (0);
   char* sql = new char[MAXLEN];
-  //snprintf (sql, MAXLEN,
-  //          "SELECT * FROM %s WHERE %s LIKE '%s%%' ORDER BY bnc DESC  LIMIT 0,%d ",
-  //          table_name.c_str(), field.c_str(), filter.c_str(), max_results);
   snprintf (sql, MAXLEN,
-            "SELECT * FROM %s WHERE word LIKE '%s%%' ORDER BY frq DESC  LIMIT 0,%d ",
-            table_name.c_str(), filter.c_str(), max_results);
-            
+            "SELECT * FROM %s WHERE %s LIKE '%s%%' ORDER BY bnc DESC  LIMIT 0,%d ",
+            table_name.c_str(), field.c_str(), filter.c_str(), max_results);
+  //snprintf (sql, MAXLEN,
+  //          "SELECT * FROM %s WHERE word LIKE '%s%%' ORDER BY frq DESC  LIMIT 0,%d ",
+  //          table_name.c_str(), filter.c_str(), max_results);
+  
   int rc = sqlite3_exec (db,
                          sql,
                          callback,

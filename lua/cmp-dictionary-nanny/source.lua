@@ -15,6 +15,10 @@ local source = {
 	pending = {},
 }
 
+source.get_keyword_pattern = function()
+	return [[\k\+]]
+end
+
 function source:is_available()
 	return true
 end
@@ -32,17 +36,14 @@ function source.complete(self, ctx, callback)
 	self:_do_complete(ctx)
 end
 
---function swap_field(input)
---	local input_len = string.len(input)
---	print(input_len)
---	local char = input:sub(input_len, input_len)
---	if char > "~" then
---		return "translation"
---	end
---	if char <= "~" then
---		return "word"
---	end
---end
+local function switch_field(input)
+	local input_len = string.len(input)
+	local char = input:sub(input_len, input_len)
+	if char > "~" then
+		return "translation"
+	end
+	return "word"
+end
 
 function source._do_complete(self, ctx)
 	if self.job == 0 then
@@ -51,11 +52,12 @@ function source._do_complete(self, ctx)
 	local max_num_results = conf:get("max_num_results")
 	local table_name = conf:get("table_name")
 	local input = string.sub(ctx.context.cursor_before_line, ctx.offset)
+	-- debug print(input .. " " .. max_num_results)
 	local req = {
 		correlation_id = ctx.context.id,
 		table_name = table_name,
 		filter = input,
-		--field = swap_field(input),
+		field = switch_field(input),
 		max_num_results = max_num_results,
 	}
 	self.pending[ctx.context.id].field = req.field
@@ -111,7 +113,7 @@ source.on_stdout = function(self, data)
 			if response == nil then
 				notify.Notify("Dictionary-nanny: json decode error: ")
 			elseif id == nil then
-				notify.Notify("id is nill")
+				-- notify.Notify("id is nill")
 			elseif self.pending[id] == nil then
 				--vim.notify(vim.inspect(self.pending[id]))
 				notify.Notify("unknown message: " .. jd)
@@ -129,7 +131,6 @@ source.on_stdout = function(self, data)
 						local translation = result.translation
 						local phonetic = result.phonetic
 						local item = {
-							--label = word,
 							insertText = word,
 							data = result,
 							kind = cmp.lsp.CompletionItemKind.Text,
@@ -144,15 +145,6 @@ source.on_stdout = function(self, data)
 						else
 							item.label = word
 						end
-						--if self.pending[id] == "word" then
-						--	item.word = word
-						--	item.documentation.value = translation .. "\n\n" .. phonetic .. "\n\n" .. definition
-						--	vim.notify("word")
-						--else
-						--	item.word = translation
-						--	item.documentation.value = word .. "\n\n" .. phonetic .. "\n\n" .. definition
-						--	vim.notify("translation")
-						--end
 						table.insert(items, item)
 					end
 				end
@@ -165,4 +157,7 @@ source.on_stdout = function(self, data)
 	end
 end
 
+source.close = function()
+	fn.jobstop(source.job)
+end
 return source

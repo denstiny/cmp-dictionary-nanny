@@ -1,5 +1,2 @@
-server/build/CmakeFiles/
-server/build/CMakeCache.txt
-server/build/cmake_install.cmake
-server/build/compile_commands.json
+server/build/
 server/.cache/

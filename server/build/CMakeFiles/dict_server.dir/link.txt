@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/dict_server.dir/dict_server.cpp.o CMakeFiles/dict_server.dir/database.cpp.o -o dict_server   -L./jsoncpp/library  -Wl,-rpath,./jsoncpp/library -lsqlite3 -Wl,-Bstatic -ljsoncpp -Wl,-Bdynamic 

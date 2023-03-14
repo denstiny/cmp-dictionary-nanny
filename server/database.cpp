@@ -12,7 +12,8 @@ DataBases::DataBases (char* db_path) {
 }
 
 bool DataBases::OpenSqlite (char* db_path) {
-  int rc = sqlite3_open (db_path, &this->db);
+  int rc = sqlite3_open_v2 (db_path, &this->db, SQLITE_OPEN_READWRITE,
+                            nullptr);
   if ( rc ) {
     std::cerr << "Can't open database: " << sqlite3_errmsg (
                 db) << std::endl;

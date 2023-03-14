@@ -5,5 +5,4 @@
 # @github      : https://github.com/denstiny
 # @blog        : https://denstiny.github.io
 
-
 cd ./server/build/ && cmake ../ && make

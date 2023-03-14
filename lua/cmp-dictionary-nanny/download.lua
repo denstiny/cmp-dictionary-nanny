@@ -49,7 +49,7 @@ M.download = function(path, url)
 	else
 		if fn.executable("unzip") == 0 then
 			Notify.Notify("unzip not found,please install unzip")
-		elseif not existsfile(out_path) then
+		elseif existsfile(out_path) then
 			M.unzip(out_path, utils.parent_dir(path))
 		end
 	end

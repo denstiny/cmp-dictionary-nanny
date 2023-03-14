@@ -4,7 +4,11 @@ This is a nvim-cmp plugin that can help complete words and view translated docum
 https://user-images.githubusercontent.com/57088952/224740571-e7cc1062-4fdf-4f68-b15b-b0718856ee0f.mp4
 
 ## Install
-`packer.nvim`
+### Install before
+**Make sure the system with these procedures** 
+ - `cmake`,`g++`,`sqlite3`,`make`,`wget`,`git`,`unzip`
+### Use the plug-in manager installation
+- `packer.nvim`
 ```lua
 use {
     "denstiny/cmp-dictionary-nanny",
@@ -49,6 +53,9 @@ you can custom database(default chinese database)
 | bnc | Word processing |
 | phonetic | phonetic symbol |
 
+## Q&A
+ - **The database failed download**  
+ `try perform the plugins directory of the download.sh script`
 ## About
 - database derived [from](https://github.com/skywind3000/ECDICT/releases/tag/1.0.28)  
 - code [reference](https://github.com/tzachar/cmp-tabnine)

@@ -6,7 +6,9 @@
 #include <strings.h>
 #include <sys/select.h>
 #include <sys/types.h>
+#ifdef __linux__
 #include <sys/epoll.h>
+#endif /* ifdef __linux__ */
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
